@@ -1,0 +1,990 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MODO Investment - Infografis</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --secondary: #f97316;
+            --accent: #10b981;
+            --dark: #0f172a;
+            --darker: #020617;
+            --light: #f8fafc;
+            --gray: #64748b;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--darker);
+            color: var(--light);
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(2, 6, 23, 0.8);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .nav-logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .nav-dots {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .nav-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .nav-dot.active {
+            background: var(--primary);
+            transform: scale(1.2);
+        }
+
+        /* Slides */
+        .slide {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 6rem 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .slide::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 50% 50%, rgba(99, 102, 241, 0.1) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .slide-content {
+            max-width: 1200px;
+            width: 100%;
+            z-index: 1;
+        }
+
+        .slide-number {
+            position: absolute;
+            top: 6rem;
+            left: 2rem;
+            font-size: 8rem;
+            font-weight: 900;
+            opacity: 0.05;
+            color: var(--primary);
+        }
+
+        /* Typography */
+        h1 {
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+        }
+
+        h2 {
+            font-size: clamp(1.8rem, 4vw, 3rem);
+            font-weight: 800;
+            margin-bottom: 1rem;
+        }
+
+        h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+            color: var(--primary);
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .subtitle {
+            font-size: 1.25rem;
+            color: var(--gray);
+            max-width: 600px;
+        }
+
+        /* Cards */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .card {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02));
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 1.5rem;
+            padding: 2rem;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            transform: scaleX(0);
+            transition: transform 0.4s;
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            border-color: var(--primary);
+            box-shadow: 0 20px 40px rgba(99, 102, 241, 0.2);
+        }
+
+        .card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .card-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 1rem;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .card-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .card-value {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--accent);
+        }
+
+        .card-subtitle {
+            font-size: 0.875rem;
+            color: var(--gray);
+        }
+
+        /* Stats */
+        .stat-row {
+            display: flex;
+            gap: 2rem;
+            flex-wrap: wrap;
+            margin: 2rem 0;
+        }
+
+        .stat {
+            text-align: center;
+            padding: 1.5rem 2rem;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 1rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .stat-value {
+            font-size: 3rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--accent), #34d399);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .stat-label {
+            font-size: 0.875rem;
+            color: var(--gray);
+            margin-top: 0.5rem;
+        }
+
+        /* Table */
+        .table-wrapper {
+            overflow-x: auto;
+            margin: 2rem 0;
+            border-radius: 1rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th,
+        td {
+            padding: 1rem 1.5rem;
+            text-align: left;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        th {
+            background: rgba(99, 102, 241, 0.2);
+            font-weight: 600;
+            font-size: 0.875rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        tr:hover td {
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .highlight {
+            color: var(--accent);
+            font-weight: 700;
+        }
+
+        /* Progress bars */
+        .progress-item {
+            margin: 1.5rem 0;
+        }
+
+        .progress-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+        }
+
+        .progress-bar {
+            height: 12px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 1rem;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            border-radius: 1rem;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            transform: scaleX(0);
+            transform-origin: left;
+        }
+
+        /* Timeline */
+        .timeline {
+            position: relative;
+            padding-left: 3rem;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(180deg, var(--primary), var(--secondary), var(--accent));
+            border-radius: 3px;
+        }
+
+        .timeline-item {
+            position: relative;
+            padding: 1.5rem 0;
+            opacity: 0;
+            transform: translateX(-20px);
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -3rem;
+            top: 1.75rem;
+            width: 16px;
+            height: 16px;
+            background: var(--dark);
+            border: 3px solid var(--primary);
+            border-radius: 50%;
+            transform: translateX(-6.5px);
+        }
+
+        .timeline-phase {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        .timeline-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin: 0.5rem 0;
+        }
+
+        .timeline-details {
+            display: flex;
+            gap: 2rem;
+            flex-wrap: wrap;
+            margin-top: 0.5rem;
+        }
+
+        .timeline-stat {
+            font-size: 0.875rem;
+            color: var(--gray);
+        }
+
+        .timeline-stat strong {
+            color: var(--accent);
+        }
+
+        /* Hero specific */
+        .hero-badge {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background: rgba(99, 102, 241, 0.2);
+            border: 1px solid var(--primary);
+            border-radius: 2rem;
+            font-size: 0.875rem;
+            font-weight: 500;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 3rem;
+            margin-top: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .hero-stat-value {
+            font-size: 2.5rem;
+            font-weight: 900;
+        }
+
+        /* Floating elements */
+        .float-element {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            pointer-events: none;
+        }
+
+        .float-1 {
+            width: 400px;
+            height: 400px;
+            background: var(--primary);
+            opacity: 0.15;
+            top: -100px;
+            right: -100px;
+        }
+
+        .float-2 {
+            width: 300px;
+            height: 300px;
+            background: var(--secondary);
+            opacity: 0.1;
+            bottom: -50px;
+            left: -50px;
+        }
+
+        /* Animations */
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        .animate-float {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 3rem;
+            background: rgba(0, 0, 0, 0.3);
+            font-size: 0.875rem;
+            color: var(--gray);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .slide {
+                padding: 5rem 1rem;
+            }
+
+            .card-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stat-row {
+                flex-direction: column;
+            }
+
+            .hero-stats {
+                gap: 1.5rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav-logo">MODO</div>
+        <div class="nav-dots" id="navDots"></div>
+    </nav>
+
+    <!-- Slide 1: Hero -->
+    <section class="slide" data-slide="1">
+        <div class="float-element float-1 animate-float"></div>
+        <div class="float-element float-2"></div>
+        <span class="slide-number">01</span>
+        <div class="slide-content">
+            <div class="hero-badge">💰 Investment Overview 2026</div>
+            <h1>Estimasi Investasi<br><span class="gradient-text">MODO Platform</span></h1>
+            <p class="subtitle">Platform AI IP Creation dengan teknologi Seedream 4.5, Seedance 4.0, dan DeepSeek V3</p>
+
+            <div class="hero-stats">
+                <div>
+                    <div class="hero-stat-value gradient-text">Rp 189jt</div>
+                    <div class="stat-label">Total CAPEX</div>
+                </div>
+                <div>
+                    <div class="hero-stat-value" style="color: var(--accent)">Rp 30.6jt</div>
+                    <div class="stat-label">OPEX/bulan (MVP)</div>
+                </div>
+                <div>
+                    <div class="hero-stat-value" style="color: var(--secondary)">Rp 100-150k</div>
+                    <div class="stat-label">Cost per IP</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Slide 2: AI Models -->
+    <section class="slide" data-slide="2">
+        <span class="slide-number">02</span>
+        <div class="slide-content">
+            <h2>🤖 AI Models yang Digunakan</h2>
+            <p class="subtitle">Stack AI untuk Image, Video, dan Text Generation</p>
+
+            <div class="card-grid">
+                <div class="card">
+                    <div class="card-icon">🖼️</div>
+                    <div class="card-title">Seedream 4.5</div>
+                    <div class="card-value">Rp 640</div>
+                    <div class="card-subtitle">per image (Text-to-Image)</div>
+                </div>
+                <div class="card">
+                    <div class="card-icon">✏️</div>
+                    <div class="card-title">Seedream 4.5-i2i</div>
+                    <div class="card-value">Rp 640</div>
+                    <div class="card-subtitle">per image (Image-to-Image)</div>
+                </div>
+                <div class="card">
+                    <div class="card-icon">🎬</div>
+                    <div class="card-title">Seedance 4.0</div>
+                    <div class="card-value">Rp 5.280</div>
+                    <div class="card-subtitle">per 6 detik video</div>
+                </div>
+                <div class="card">
+                    <div class="card-icon">💬</div>
+                    <div class="card-title">DeepSeek V3</div>
+                    <div class="card-value">Rp 32</div>
+                    <div class="card-subtitle">per request (5K tokens)</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Slide 3: Cost per IP -->
+    <section class="slide" data-slide="3">
+        <span class="slide-number">03</span>
+        <div class="slide-content">
+            <h2>📦 Biaya per IP Creation</h2>
+            <p class="subtitle">Full Package: Story + 70 Images + 15 Videos</p>
+
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Component</th>
+                            <th>Model</th>
+                            <th>Quantity</th>
+                            <th>Cost/Unit</th>
+                            <th>Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Story Generation</td>
+                            <td>DeepSeek V3</td>
+                            <td>~5K tokens</td>
+                            <td>Rp 32</td>
+                            <td class="highlight">Rp 160</td>
+                        </tr>
+                        <tr>
+                            <td>Character Images</td>
+                            <td>Seedream 4.5</td>
+                            <td>10 images</td>
+                            <td>Rp 640</td>
+                            <td class="highlight">Rp 6.400</td>
+                        </tr>
+                        <tr>
+                            <td>Scene Images</td>
+                            <td>Seedream 4.5-i2i</td>
+                            <td>60 images</td>
+                            <td>Rp 640</td>
+                            <td class="highlight">Rp 38.400</td>
+                        </tr>
+                        <tr>
+                            <td>Teaser Videos</td>
+                            <td>Seedance 4.0</td>
+                            <td>10-20 × 6s</td>
+                            <td>Rp 5.280</td>
+                            <td class="highlight">Rp 52.800 - 105.600</td>
+                        </tr>
+                        <tr style="background: rgba(16, 185, 129, 0.1);">
+                            <td colspan="4"><strong>TOTAL per IP</strong></td>
+                            <td><strong style="font-size: 1.25rem; color: var(--accent);">Rp 100.000 - 150.000</strong>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- Slide 4: CAPEX -->
+    <section class="slide" data-slide="4">
+        <span class="slide-number">04</span>
+        <div class="slide-content">
+            <h2>🏗️ CAPEX - Investasi Awal</h2>
+            <p class="subtitle">Modal yang dibutuhkan sebelum launch</p>
+
+            <div class="card-grid">
+                <div class="card">
+                    <h3>Infrastructure</h3>
+                    <div class="progress-item">
+                        <div class="progress-header">
+                            <span>Vercel Pro (1 tahun)</span>
+                            <span class="highlight">Rp 3.840.000</span>
+                        </div>
+                    </div>
+                    <div class="progress-item">
+                        <div class="progress-header">
+                            <span>Neon Database (1 tahun)</span>
+                            <span class="highlight">Rp 4.800.000</span>
+                        </div>
+                    </div>
+                    <div class="progress-item">
+                        <div class="progress-header">
+                            <span>Domain & SSL</span>
+                            <span class="highlight">Rp 1.000.000</span>
+                        </div>
+                    </div>
+                    <div style="border-top: 1px solid rgba(255,255,255,0.1); padding-top: 1rem; margin-top: 1rem;">
+                        <strong>Subtotal: Rp 9.640.000</strong>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h3>AI API Topup</h3>
+                    <div class="progress-item">
+                        <div class="progress-header">
+                            <span>ModelsLab Standard</span>
+                            <span class="highlight">Rp 752.000</span>
+                        </div>
+                    </div>
+                    <div class="progress-item">
+                        <div class="progress-header">
+                            <span>DeepSeek</span>
+                            <span class="highlight">Rp 800.000</span>
+                        </div>
+                    </div>
+                    <div class="progress-item">
+                        <div class="progress-header">
+                            <span>ModelsLab Wallet</span>
+                            <span class="highlight">Rp 1.600.000</span>
+                        </div>
+                    </div>
+                    <div style="border-top: 1px solid rgba(255,255,255,0.1); padding-top: 1rem; margin-top: 1rem;">
+                        <strong>Subtotal: Rp 3.152.000</strong>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h3>Development (6 bulan)</h3>
+                    <div class="progress-item">
+                        <div class="progress-header">
+                            <span>Gaji Developer</span>
+                            <span class="highlight">Rp 150.000.000</span>
+                        </div>
+                    </div>
+                    <div class="progress-item">
+                        <div class="progress-header">
+                            <span>AI Coding (Antigravity×5)</span>
+                            <span class="highlight">Rp 9.600.000</span>
+                        </div>
+                    </div>
+                    <div style="border-top: 1px solid rgba(255,255,255,0.1); padding-top: 1rem; margin-top: 1rem;">
+                        <strong>Subtotal: Rp 159.600.000</strong>
+                    </div>
+                </div>
+            </div>
+
+            <div class="stat-row" style="justify-content: center; margin-top: 3rem;">
+                <div class="stat">
+                    <div class="stat-value">Rp 189jt</div>
+                    <div class="stat-label">Total CAPEX (dengan buffer 10%)</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Slide 5: Team Structure -->
+    <section class="slide" data-slide="5">
+        <span class="slide-number">05</span>
+        <div class="slide-content">
+            <h2>👥 Struktur Tim (AI-Powered)</h2>
+            <p class="subtitle">Lean team dengan AI coding tools untuk 10x produktivitas</p>
+
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-phase">Fase 1</div>
+                    <div class="timeline-title">MVP (0-100 users)</div>
+                    <div class="timeline-details">
+                        <span class="timeline-stat">👤 <strong>1 orang</strong></span>
+                        <span class="timeline-stat">💰 <strong>Rp 25jt</strong>/bulan</span>
+                        <span class="timeline-stat">🤖 Antigravity ×5</span>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-phase">Fase 2</div>
+                    <div class="timeline-title">Growth (100-1.000 users)</div>
+                    <div class="timeline-details">
+                        <span class="timeline-stat">👥 <strong>3 orang</strong></span>
+                        <span class="timeline-stat">💰 <strong>Rp 55jt</strong>/bulan</span>
+                        <span class="timeline-stat">CEO + Dev + Marketing</span>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-phase">Fase 3</div>
+                    <div class="timeline-title">Scale (1.000-10.000 users)</div>
+                    <div class="timeline-details">
+                        <span class="timeline-stat">👥 <strong>5 orang</strong></span>
+                        <span class="timeline-stat">💰 <strong>Rp 100jt</strong>/bulan</span>
+                        <span class="timeline-stat">CEO + CTO + Dev + Marketing + CS</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Slide 6: OPEX -->
+    <section class="slide" data-slide="6">
+        <span class="slide-number">06</span>
+        <div class="slide-content">
+            <h2>📈 OPEX - Biaya Bulanan</h2>
+            <p class="subtitle">Total biaya operasional termasuk gaji tim</p>
+
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Fase</th>
+                            <th>Users</th>
+                            <th>AI Cost</th>
+                            <th>AI Coding</th>
+                            <th>Gaji Tim</th>
+                            <th>Infra</th>
+                            <th>Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>MVP</strong></td>
+                            <td>0-100</td>
+                            <td>Rp 3jt</td>
+                            <td>Rp 1.6jt</td>
+                            <td>Rp 25jt</td>
+                            <td>Rp 1jt</td>
+                            <td class="highlight" style="font-size: 1.1rem;"><strong>Rp 30.6jt</strong></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Growth</strong></td>
+                            <td>100-1K</td>
+                            <td>Rp 15jt</td>
+                            <td>Rp 4.8jt</td>
+                            <td>Rp 55jt</td>
+                            <td>Rp 2jt</td>
+                            <td class="highlight" style="font-size: 1.1rem;"><strong>Rp 76.8jt</strong></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Scale</strong></td>
+                            <td>1K-10K</td>
+                            <td>Rp 30jt</td>
+                            <td>Rp 8jt</td>
+                            <td>Rp 100jt</td>
+                            <td>Rp 3jt</td>
+                            <td class="highlight" style="font-size: 1.1rem;"><strong>Rp 141jt</strong></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="card"
+                style="margin-top: 2rem; background: linear-gradient(135deg, rgba(249, 115, 22, 0.1), rgba(239, 68, 68, 0.1)); border-color: var(--secondary);">
+                <h3 style="color: var(--secondary);">⚠️ Key Risk: Video Generation</h3>
+                <p style="color: var(--gray);">Video adalah cost driver terbesar (Rp 5.280/6s vs Rp 640/image). Gunakan
+                    strategi limit video per user untuk kontrol biaya.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Slide 7: Summary -->
+    <section class="slide" data-slide="7">
+        <span class="slide-number">07</span>
+        <div class="slide-content" style="text-align: center;">
+            <h2>🎯 Summary</h2>
+            <p class="subtitle" style="margin: 0 auto 3rem;">Ringkasan investasi MODO Platform</p>
+
+            <div class="stat-row" style="justify-content: center;">
+                <div class="stat">
+                    <div class="stat-value">Rp 189jt</div>
+                    <div class="stat-label">Total CAPEX</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-value">Rp 30.6jt</div>
+                    <div class="stat-label">OPEX MVP/bulan</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-value">Rp 125k</div>
+                    <div class="stat-label">Avg Cost/IP</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-value">~50</div>
+                    <div class="stat-label">Pro subs untuk BEP</div>
+                </div>
+            </div>
+
+            <div class="card-grid" style="margin-top: 3rem;">
+                <div class="card" style="text-align: left;">
+                    <h3>🛠️ Tech Stack</h3>
+                    <p style="color: var(--gray); line-height: 1.8;">
+                        • Seedream 4.5 (Image)<br>
+                        • Seedance 4.0 (Video)<br>
+                        • DeepSeek V3 (LLM)<br>
+                        • Antigravity Pro (AI Coding)
+                    </p>
+                </div>
+                <div class="card" style="text-align: left;">
+                    <h3>👥 Team</h3>
+                    <p style="color: var(--gray); line-height: 1.8;">
+                        • MVP: 1 orang<br>
+                        • Growth: 3 orang<br>
+                        • Scale: 5 orang<br>
+                        • AI-powered 10x productivity
+                    </p>
+                </div>
+                <div class="card" style="text-align: left;">
+                    <h3>📅 Timeline</h3>
+                    <p style="color: var(--gray); line-height: 1.8;">
+                        • Development: 6 bulan<br>
+                        • MVP Launch: Bulan 7<br>
+                        • Growth: Bulan 7-18<br>
+                        • Scale: Tahun 2+
+                    </p>
+                </div>
+            </div>
+
+            <p style="margin-top: 3rem; color: var(--gray); font-size: 0.875rem;">
+                Last Updated: Februari 2026 | Kurs: $1 = Rp 16.000
+            </p>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <p>MODO Investment Infographic • Built with 💜 using GSAP</p>
+    </footer>
+
+    <script>
+        // Register GSAP plugins
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Create nav dots
+        const slides = document.querySelectorAll('.slide');
+        const navDots = document.getElementById('navDots');
+
+        slides.forEach((slide, i) => {
+            const dot = document.createElement('div');
+            dot.className = 'nav-dot';
+            dot.addEventListener('click', () => {
+                slide.scrollIntoView({ behavior: 'smooth' });
+            });
+            navDots.appendChild(dot);
+        });
+
+        const dots = document.querySelectorAll('.nav-dot');
+
+        // Update active dot on scroll
+        slides.forEach((slide, i) => {
+            ScrollTrigger.create({
+                trigger: slide,
+                start: 'top center',
+                end: 'bottom center',
+                onEnter: () => updateDots(i),
+                onEnterBack: () => updateDots(i),
+            });
+        });
+
+        function updateDots(index) {
+            dots.forEach((dot, i) => {
+                dot.classList.toggle('active', i === index);
+            });
+        }
+
+        // Animate slide content on scroll
+        slides.forEach((slide) => {
+            const content = slide.querySelector('.slide-content');
+            const cards = slide.querySelectorAll('.card');
+            const timelineItems = slide.querySelectorAll('.timeline-item');
+            const progressFills = slide.querySelectorAll('.progress-fill');
+
+            // Main content fade in
+            gsap.fromTo(content,
+                { opacity: 0, y: 50 },
+                {
+                    opacity: 1,
+                    y: 0,
+                    duration: 0.8,
+                    ease: 'power2.out',
+                    scrollTrigger: {
+                        trigger: slide,
+                        start: 'top 80%',
+                        toggleActions: 'play none none reverse'
+                    }
+                }
+            );
+
+            // Stagger cards
+            if (cards.length) {
+                gsap.fromTo(cards,
+                    { opacity: 0, y: 30 },
+                    {
+                        opacity: 1,
+                        y: 0,
+                        duration: 0.6,
+                        stagger: 0.15,
+                        ease: 'power2.out',
+                        scrollTrigger: {
+                            trigger: slide,
+                            start: 'top 60%',
+                            toggleActions: 'play none none reverse'
+                        }
+                    }
+                );
+            }
+
+            // Timeline items
+            if (timelineItems.length) {
+                gsap.to(timelineItems, {
+                    opacity: 1,
+                    x: 0,
+                    duration: 0.6,
+                    stagger: 0.2,
+                    ease: 'power2.out',
+                    scrollTrigger: {
+                        trigger: slide,
+                        start: 'top 60%',
+                        toggleActions: 'play none none reverse'
+                    }
+                });
+            }
+
+            // Progress bars
+            if (progressFills.length) {
+                gsap.to(progressFills, {
+                    scaleX: 1,
+                    duration: 1,
+                    stagger: 0.1,
+                    ease: 'power2.out',
+                    scrollTrigger: {
+                        trigger: slide,
+                        start: 'top 60%',
+                        toggleActions: 'play none none reverse'
+                    }
+                });
+            }
+        });
+
+        // Parallax for floating elements
+        gsap.utils.toArray('.float-element').forEach((el) => {
+            gsap.to(el, {
+                y: -100,
+                ease: 'none',
+                scrollTrigger: {
+                    trigger: el.parentElement,
+                    start: 'top bottom',
+                    end: 'bottom top',
+                    scrub: 1
+                }
+            });
+        });
+
+        // Initialize first dot as active
+        updateDots(0);
+    </script>
+</body>
+
+</html>
