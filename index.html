@@ -346,37 +346,176 @@
         @media (max-width: 768px) {
             .slide-content {
                 padding: 1rem;
+                padding-top: 3rem;
+                padding-bottom: 6rem;
+            }
+
+            h1 {
+                font-size: 1.75rem;
+                margin-bottom: 0.75rem;
+            }
+
+            h2 {
+                font-size: 1.4rem;
+                margin-bottom: 0.5rem;
+            }
+
+            .subtitle {
+                font-size: 0.9rem;
+                margin-bottom: 1rem;
             }
 
             .card-grid {
                 grid-template-columns: repeat(2, 1fr);
-                gap: 0.75rem;
+                gap: 0.5rem;
+            }
+
+            .card {
+                padding: 0.75rem;
+                border-radius: 0.75rem;
+            }
+
+            .card-icon {
+                font-size: 1.5rem;
+                margin-bottom: 0.25rem;
+            }
+
+            .card-title {
+                font-size: 0.75rem;
+            }
+
+            .card-value {
+                font-size: 1rem;
+            }
+
+            .card-subtitle {
+                font-size: 0.65rem;
             }
 
             .stat-row {
-                gap: 0.75rem;
+                gap: 0.5rem;
+                margin: 1rem 0;
             }
 
             .stat {
-                padding: 1rem;
-                min-width: 100px;
+                padding: 0.75rem;
+                min-width: 80px;
+                border-radius: 0.75rem;
+                flex: 1;
             }
 
             .stat-value {
-                font-size: 1.5rem;
+                font-size: 1.1rem;
+            }
+
+            .stat-label {
+                font-size: 0.65rem;
+            }
+
+            .total-box {
+                padding: 1rem;
+                margin: 1rem auto;
+                border-radius: 1rem;
+            }
+
+            .total-value {
+                font-size: 1.75rem !important;
+            }
+
+            .table-wrapper {
+                max-height: 45vh;
+                font-size: 0.7rem;
+            }
+
+            th,
+            td {
+                padding: 0.5rem;
+            }
+
+            .badge {
+                font-size: 0.7rem;
+                padding: 0.3rem 0.75rem;
             }
 
             .nav-controls {
-                bottom: 1rem;
+                bottom: 0.75rem;
+            }
+
+            .nav-btn {
+                width: 40px;
+                height: 40px;
+                font-size: 1rem;
+            }
+
+            .nav-dot {
+                width: 8px;
+                height: 8px;
             }
 
             .logo,
-            .slide-counter {
-                display: none;
-            }
-
+            .slide-counter,
             .keyboard-hint {
                 display: none;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .slide-content {
+                padding: 0.75rem;
+                padding-top: 2rem;
+                padding-bottom: 5rem;
+            }
+
+            h1 {
+                font-size: 1.4rem;
+            }
+
+            h2 {
+                font-size: 1.2rem;
+            }
+
+            .subtitle {
+                font-size: 0.8rem;
+            }
+
+            .card-grid {
+                gap: 0.4rem;
+            }
+
+            .card {
+                padding: 0.5rem;
+            }
+
+            .card-icon {
+                font-size: 1.25rem;
+            }
+
+            .card-title {
+                font-size: 0.7rem;
+            }
+
+            .card-value {
+                font-size: 0.9rem;
+            }
+
+            .stat {
+                padding: 0.5rem;
+            }
+
+            .stat-value {
+                font-size: 1rem;
+            }
+
+            .stat-label {
+                font-size: 0.6rem;
+            }
+
+            .total-value {
+                font-size: 1.5rem !important;
+            }
+
+            .total-box p {
+                font-size: 0.7rem;
             }
         }
     </style>
