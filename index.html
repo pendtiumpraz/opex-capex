@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MODO Investment - Infografis</title>
+    <title>IP Development Studio - Pitch Deck</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
@@ -18,7 +18,6 @@
 
         :root {
             --primary: #6366f1;
-            --primary-dark: #4f46e5;
             --secondary: #f97316;
             --accent: #10b981;
             --dark: #0f172a;
@@ -34,7 +33,6 @@
             overflow-x: hidden;
         }
 
-        /* Navigation */
         .nav {
             position: fixed;
             top: 0;
@@ -45,7 +43,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background: rgba(2, 6, 23, 0.8);
+            background: rgba(2, 6, 23, 0.9);
             backdrop-filter: blur(20px);
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
@@ -77,7 +75,6 @@
             transform: scale(1.2);
         }
 
-        /* Slides */
         .slide {
             min-height: 100vh;
             display: flex;
@@ -85,22 +82,18 @@
             justify-content: center;
             padding: 6rem 2rem;
             position: relative;
-            overflow: hidden;
         }
 
         .slide::before {
             content: '';
             position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
+            inset: 0;
             background: radial-gradient(circle at 50% 50%, rgba(99, 102, 241, 0.1) 0%, transparent 50%);
             pointer-events: none;
         }
 
         .slide-content {
-            max-width: 1200px;
+            max-width: 1100px;
             width: 100%;
             z-index: 1;
         }
@@ -115,7 +108,6 @@
             color: var(--primary);
         }
 
-        /* Typography */
         h1 {
             font-size: clamp(2.5rem, 6vw, 4.5rem);
             font-weight: 900;
@@ -130,7 +122,7 @@
         }
 
         h3 {
-            font-size: 1.5rem;
+            font-size: 1.3rem;
             font-weight: 700;
             margin-bottom: 0.75rem;
             color: var(--primary);
@@ -145,10 +137,10 @@
         .subtitle {
             font-size: 1.25rem;
             color: var(--gray);
-            max-width: 600px;
+            max-width: 700px;
+            line-height: 1.6;
         }
 
-        /* Cards */
         .card-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -161,31 +153,13 @@
             border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: 1.5rem;
             padding: 2rem;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 3px;
-            background: linear-gradient(90deg, var(--primary), var(--secondary));
-            transform: scaleX(0);
-            transition: transform 0.4s;
+            transition: all 0.4s;
         }
 
         .card:hover {
             transform: translateY(-8px);
             border-color: var(--primary);
             box-shadow: 0 20px 40px rgba(99, 102, 241, 0.2);
-        }
-
-        .card:hover::before {
-            transform: scaleX(1);
         }
 
         .card-icon {
@@ -200,12 +174,6 @@
             margin-bottom: 1rem;
         }
 
-        .card-title {
-            font-size: 1.1rem;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-        }
-
         .card-value {
             font-size: 2rem;
             font-weight: 800;
@@ -213,16 +181,17 @@
         }
 
         .card-subtitle {
-            font-size: 0.875rem;
+            font-size: 0.9rem;
             color: var(--gray);
+            margin-top: 0.25rem;
         }
 
-        /* Stats */
         .stat-row {
             display: flex;
             gap: 2rem;
             flex-wrap: wrap;
             margin: 2rem 0;
+            justify-content: center;
         }
 
         .stat {
@@ -231,10 +200,12 @@
             background: rgba(255, 255, 255, 0.03);
             border-radius: 1rem;
             border: 1px solid rgba(255, 255, 255, 0.1);
+            flex: 1;
+            min-width: 200px;
         }
 
         .stat-value {
-            font-size: 3rem;
+            font-size: 2.5rem;
             font-weight: 900;
             background: linear-gradient(135deg, var(--accent), #34d399);
             -webkit-background-clip: text;
@@ -242,12 +213,11 @@
         }
 
         .stat-label {
-            font-size: 0.875rem;
+            font-size: 0.9rem;
             color: var(--gray);
             margin-top: 0.5rem;
         }
 
-        /* Table */
         .table-wrapper {
             overflow-x: auto;
             margin: 2rem 0;
@@ -272,11 +242,6 @@
             font-weight: 600;
             font-size: 0.875rem;
             text-transform: uppercase;
-            letter-spacing: 0.05em;
-        }
-
-        tr:hover td {
-            background: rgba(255, 255, 255, 0.02);
         }
 
         .highlight {
@@ -284,100 +249,6 @@
             font-weight: 700;
         }
 
-        /* Progress bars */
-        .progress-item {
-            margin: 1.5rem 0;
-        }
-
-        .progress-header {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 0.5rem;
-        }
-
-        .progress-bar {
-            height: 12px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 1rem;
-            overflow: hidden;
-        }
-
-        .progress-fill {
-            height: 100%;
-            border-radius: 1rem;
-            background: linear-gradient(90deg, var(--primary), var(--secondary));
-            transform: scaleX(0);
-            transform-origin: left;
-        }
-
-        /* Timeline */
-        .timeline {
-            position: relative;
-            padding-left: 3rem;
-        }
-
-        .timeline::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 0;
-            bottom: 0;
-            width: 3px;
-            background: linear-gradient(180deg, var(--primary), var(--secondary), var(--accent));
-            border-radius: 3px;
-        }
-
-        .timeline-item {
-            position: relative;
-            padding: 1.5rem 0;
-            opacity: 0;
-            transform: translateX(-20px);
-        }
-
-        .timeline-item::before {
-            content: '';
-            position: absolute;
-            left: -3rem;
-            top: 1.75rem;
-            width: 16px;
-            height: 16px;
-            background: var(--dark);
-            border: 3px solid var(--primary);
-            border-radius: 50%;
-            transform: translateX(-6.5px);
-        }
-
-        .timeline-phase {
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            color: var(--primary);
-            font-weight: 600;
-        }
-
-        .timeline-title {
-            font-size: 1.25rem;
-            font-weight: 700;
-            margin: 0.5rem 0;
-        }
-
-        .timeline-details {
-            display: flex;
-            gap: 2rem;
-            flex-wrap: wrap;
-            margin-top: 0.5rem;
-        }
-
-        .timeline-stat {
-            font-size: 0.875rem;
-            color: var(--gray);
-        }
-
-        .timeline-stat strong {
-            color: var(--accent);
-        }
-
-        /* Hero specific */
         .hero-badge {
             display: inline-block;
             padding: 0.5rem 1rem;
@@ -401,7 +272,6 @@
             font-weight: 900;
         }
 
-        /* Floating elements */
         .float-element {
             position: absolute;
             border-radius: 50%;
@@ -427,24 +297,23 @@
             left: -50px;
         }
 
-        /* Animations */
-        @keyframes float {
-
-            0%,
-            100% {
-                transform: translateY(0);
-            }
-
-            50% {
-                transform: translateY(-20px);
-            }
+        .mvp-box {
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.2), rgba(249, 115, 22, 0.1));
+            border: 2px solid var(--primary);
+            border-radius: 1.5rem;
+            padding: 2rem;
+            margin: 2rem 0;
         }
 
-        .animate-float {
-            animation: float 6s ease-in-out infinite;
+        .total-box {
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.2), rgba(16, 185, 129, 0.05));
+            border: 3px solid var(--accent);
+            border-radius: 2rem;
+            padding: 3rem;
+            text-align: center;
+            margin: 2rem 0;
         }
 
-        /* Footer */
         .footer {
             text-align: center;
             padding: 3rem;
@@ -453,7 +322,6 @@
             color: var(--gray);
         }
 
-        /* Responsive */
         @media (max-width: 768px) {
             .slide {
                 padding: 5rem 1rem;
@@ -476,447 +344,290 @@
 
 <body>
 
-    <!-- Navigation -->
     <nav class="nav">
-        <div class="nav-logo">MODO</div>
+        <div class="nav-logo">IP Dev Studio</div>
         <div class="nav-dots" id="navDots"></div>
     </nav>
 
     <!-- Slide 1: Hero -->
     <section class="slide" data-slide="1">
-        <div class="float-element float-1 animate-float"></div>
+        <div class="float-element float-1"></div>
         <div class="float-element float-2"></div>
         <span class="slide-number">01</span>
         <div class="slide-content">
-            <div class="hero-badge">💰 Investment Overview 2026</div>
-            <h1>Estimasi Investasi<br><span class="gradient-text">MODO Platform</span></h1>
-            <p class="subtitle">Platform AI IP Creation dengan teknologi Seedream 4.5, Seedance 4.0, dan DeepSeek V3</p>
+            <div class="hero-badge">💰 Investor Pitch 2026</div>
+            <h1>IP Development Studio<br><span class="gradient-text">AI-Powered IP Creation</span></h1>
+            <p class="subtitle">Platform untuk membuat Intellectual Property (cerita, karakter, visual) menggunakan AI.
+                Target: content creator, studio, dan brand.</p>
 
-            <div class="hero-stats">
-                <div>
-                    <div class="hero-stat-value gradient-text">Rp 470jt</div>
-                    <div class="stat-label">Total CAPEX (Full)</div>
+            <div class="total-box" style="max-width: 500px; margin-top: 3rem;">
+                <p style="color: var(--gray); margin-bottom: 0.5rem;">Total Investasi MVP (6 bulan)</p>
+                <div style="font-size: 4rem; font-weight: 900; color: var(--accent);">Rp 385 juta</div>
+                <p style="color: var(--gray); margin-top: 0.5rem;">≈ $24.000</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Slide 2: Apa itu MVP -->
+    <section class="slide" data-slide="2">
+        <span class="slide-number">02</span>
+        <div class="slide-content">
+            <h2>🎯 Apa itu MVP?</h2>
+            <p class="subtitle">Minimum Viable Product - Versi pertama produk yang siap digunakan</p>
+
+            <div class="mvp-box">
+                <h3 style="color: var(--light); font-size: 1.5rem;">MVP = Produk Minimum yang Layak Jual</h3>
+                <p style="color: var(--gray); margin: 1rem 0; line-height: 1.8;">
+                    MVP adalah strategi startup untuk <strong style="color: var(--accent);">launch cepat dengan budget
+                        terkontrol</strong>.
+                    Fokus pada fitur inti yang memberikan value ke user, sambil mengumpulkan feedback untuk iterasi
+                    selanjutnya.
+                </p>
+            </div>
+
+            <div class="stat-row">
+                <div class="stat">
+                    <div class="stat-value" style="font-size: 2.5rem;">6 bulan</div>
+                    <div class="stat-label">Waktu Development</div>
                 </div>
-                <div>
-                    <div class="hero-stat-value" style="color: var(--accent)">Rp 30.6jt</div>
-                    <div class="stat-label">OPEX/bulan (MVP)</div>
+                <div class="stat">
+                    <div class="stat-value" style="font-size: 2.5rem;">2 orang</div>
+                    <div class="stat-label">Tim Inti</div>
                 </div>
-                <div>
-                    <div class="hero-stat-value" style="color: var(--secondary)">Rp 100-150k</div>
-                    <div class="stat-label">Cost per IP</div>
+                <div class="stat">
+                    <div class="stat-value" style="font-size: 2.5rem;">0-100</div>
+                    <div class="stat-label">Target User Awal</div>
+                </div>
+            </div>
+
+            <h3 style="margin-top: 2rem;">Fitur MVP:</h3>
+            <div class="card-grid">
+                <div class="card">
+                    <div class="card-icon">📖</div>
+                    <h3 style="color: var(--light);">Story Generation</h3>
+                    <p style="color: var(--gray);">Generate cerita dengan AI berdasarkan genre, tema, dan struktur
+                        dramatis</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">🎨</div>
+                    <h3 style="color: var(--light);">Character & Scene</h3>
+                    <p style="color: var(--gray);">Generate karakter dan scene visual dengan konsistensi tinggi</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">🎬</div>
+                    <h3 style="color: var(--light);">Video Teaser</h3>
+                    <p style="color: var(--gray);">Generate video pendek untuk preview dan pitch</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Slide 2: AI Models -->
-    <section class="slide" data-slide="2">
-        <span class="slide-number">02</span>
+    <!-- Slide 3: Tim MVP -->
+    <section class="slide" data-slide="3">
+        <span class="slide-number">03</span>
         <div class="slide-content">
-            <h2>🤖 AI Models yang Digunakan</h2>
-            <p class="subtitle">Stack AI untuk Image, Video, dan Text Generation</p>
+            <h2>👥 Tim MVP</h2>
+            <p class="subtitle">2 orang dengan keahlian komplementer</p>
+
+            <div class="card-grid" style="max-width: 800px; margin: 2rem auto;">
+                <div class="card" style="text-align: center;">
+                    <div class="card-icon" style="margin: 0 auto 1rem;">👨‍💻</div>
+                    <h3 style="color: var(--light); font-size: 1.3rem;">Developer</h3>
+                    <p style="color: var(--gray); margin: 1rem 0;">
+                        Full-stack development<br>
+                        AI integration<br>
+                        Infrastructure & deployment
+                    </p>
+                    <div class="card-value">Rp 25jt/bulan</div>
+                </div>
+                <div class="card" style="text-align: center;">
+                    <div class="card-icon" style="margin: 0 auto 1rem;">📚</div>
+                    <h3 style="color: var(--light); font-size: 1.3rem;">Data Training</h3>
+                    <p style="color: var(--gray); margin: 1rem 0;">
+                        Kurasi dataset film & naskah<br>
+                        Prompt engineering<br>
+                        Quality assurance output AI
+                    </p>
+                    <div class="card-value">Rp 25jt/bulan</div>
+                </div>
+            </div>
+
+            <div class="total-box" style="max-width: 400px; margin: 2rem auto;">
+                <p style="color: var(--gray);">Total Gaji Tim (6 bulan)</p>
+                <div style="font-size: 2.5rem; font-weight: 900; color: var(--accent);">Rp 300.000.000</div>
+                <p style="color: var(--gray); margin-top: 0.5rem;">2 orang × Rp 25jt × 6 bulan</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Slide 4: Teknologi AI -->
+    <section class="slide" data-slide="4">
+        <span class="slide-number">04</span>
+        <div class="slide-content">
+            <h2>🤖 Teknologi AI</h2>
+            <p class="subtitle">Best-in-class AI models untuk hasil berkualitas tinggi</p>
 
             <div class="card-grid">
                 <div class="card">
                     <div class="card-icon">🖼️</div>
-                    <div class="card-title">Seedream 4.5</div>
+                    <h3 style="color: var(--light);">Seedream 4.5</h3>
                     <div class="card-value">Rp 640</div>
-                    <div class="card-subtitle">per image (Text-to-Image)</div>
-                </div>
-                <div class="card">
-                    <div class="card-icon">✏️</div>
-                    <div class="card-title">Seedream 4.5-i2i</div>
-                    <div class="card-value">Rp 640</div>
-                    <div class="card-subtitle">per image (Image-to-Image)</div>
+                    <div class="card-subtitle">per gambar • Image Generation</div>
                 </div>
                 <div class="card">
                     <div class="card-icon">🎬</div>
-                    <div class="card-title">Seedance 4.0</div>
+                    <h3 style="color: var(--light);">Seedance 4.0</h3>
                     <div class="card-value">Rp 5.280</div>
                     <div class="card-subtitle">per 6 detik video</div>
                 </div>
                 <div class="card">
                     <div class="card-icon">💬</div>
-                    <div class="card-title">DeepSeek V3</div>
+                    <h3 style="color: var(--light);">DeepSeek V3</h3>
                     <div class="card-value">Rp 32</div>
-                    <div class="card-subtitle">per request (5K tokens)</div>
+                    <div class="card-subtitle">per request • Story Generation</div>
                 </div>
+            </div>
+
+            <div class="card" style="margin-top: 2rem; text-align: center;">
+                <p style="color: var(--gray); margin-bottom: 0.5rem;">Rata-rata biaya produksi per IP</p>
+                <div style="font-size: 3rem; font-weight: 900; color: var(--accent);">Rp 125.000</div>
+                <p style="color: var(--gray); margin-top: 0.5rem;">70 gambar + 15 video + story generation</p>
             </div>
         </div>
     </section>
 
-    <!-- Slide 3: Cost per IP -->
-    <section class="slide" data-slide="3">
-        <span class="slide-number">03</span>
-        <div class="slide-content">
-            <h2>📦 Biaya per IP Creation</h2>
-            <p class="subtitle">Full Package: Story + 70 Images + 15 Videos</p>
-
-            <div class="table-wrapper">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Component</th>
-                            <th>Model</th>
-                            <th>Quantity</th>
-                            <th>Cost/Unit</th>
-                            <th>Total</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Story Generation</td>
-                            <td>DeepSeek V3</td>
-                            <td>~5K tokens</td>
-                            <td>Rp 32</td>
-                            <td class="highlight">Rp 160</td>
-                        </tr>
-                        <tr>
-                            <td>Character Images</td>
-                            <td>Seedream 4.5</td>
-                            <td>10 images</td>
-                            <td>Rp 640</td>
-                            <td class="highlight">Rp 6.400</td>
-                        </tr>
-                        <tr>
-                            <td>Scene Images</td>
-                            <td>Seedream 4.5-i2i</td>
-                            <td>60 images</td>
-                            <td>Rp 640</td>
-                            <td class="highlight">Rp 38.400</td>
-                        </tr>
-                        <tr>
-                            <td>Teaser Videos</td>
-                            <td>Seedance 4.0</td>
-                            <td>10-20 × 6s</td>
-                            <td>Rp 5.280</td>
-                            <td class="highlight">Rp 52.800 - 105.600</td>
-                        </tr>
-                        <tr style="background: rgba(16, 185, 129, 0.1);">
-                            <td colspan="4"><strong>TOTAL per IP</strong></td>
-                            <td><strong style="font-size: 1.25rem; color: var(--accent);">Rp 100.000 - 150.000</strong>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </section>
-
-    <!-- Slide 4: CAPEX -->
-    <section class="slide" data-slide="4">
-        <span class="slide-number">04</span>
-        <div class="slide-content">
-            <h2>🏗️ CAPEX - Investasi Awal (Aset)</h2>
-            <p class="subtitle">Modal yang dibutuhkan sebelum launch - menjadi aset perusahaan</p>
-
-            <div class="card-grid" style="grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));">
-                <div class="card">
-                    <h3>☁️ Cloud Infrastructure</h3>
-                    <div class="progress-item">
-                        <div class="progress-header">
-                            <span>MVP: Vercel + Neon</span>
-                            <span class="highlight">Rp 12.040.000</span>
-                        </div>
-                    </div>
-                    <div class="progress-item">
-                        <div class="progress-header">
-                            <span>Scale: AWS (1000+ users)</span>
-                            <span class="highlight">Rp 55.000.000/thn</span>
-                        </div>
-                    </div>
-                    <div style="border-top: 1px solid rgba(255,255,255,0.1); padding-top: 1rem; margin-top: 1rem;">
-                        <small style="color: var(--gray);">Hosting, Database, Storage, CDN</small>
-                    </div>
-                </div>
-
-                <div class="card">
-                    <h3>💻 Hardware</h3>
-                    <div class="progress-item">
-                        <div class="progress-header">
-                            <span>Laptop/MacBook Pro M3</span>
-                            <span class="highlight">Rp 35.000.000</span>
-                        </div>
-                    </div>
-                    <div class="progress-item">
-                        <div class="progress-header">
-                            <span>PC Workstation RTX 4080</span>
-                            <span class="highlight">Rp 45.000.000</span>
-                        </div>
-                    </div>
-                    <div class="progress-item">
-                        <div class="progress-header">
-                            <span>Monitor, NAS, Peripheral</span>
-                            <span class="highlight">Rp 21.000.000</span>
-                        </div>
-                    </div>
-                    <div style="border-top: 1px solid rgba(255,255,255,0.1); padding-top: 1rem; margin-top: 1rem;">
-                        <strong>Subtotal: Rp 101.000.000</strong>
-                    </div>
-                </div>
-
-                <div class="card">
-                    <h3>📚 Training Data</h3>
-                    <div class="progress-item">
-                        <div class="progress-header">
-                            <span>Dataset 2000+ Film/Series</span>
-                            <span class="highlight">Rp 50.000.000</span>
-                        </div>
-                    </div>
-                    <div class="progress-item">
-                        <div class="progress-header">
-                            <span>5000+ Naskah/Screenplay</span>
-                            <span class="highlight">Rp 30.000.000</span>
-                        </div>
-                    </div>
-                    <div class="progress-item">
-                        <div class="progress-header">
-                            <span>Dataset Karakter + Visual</span>
-                            <span class="highlight">Rp 45.000.000</span>
-                        </div>
-                    </div>
-                    <div class="progress-item">
-                        <div class="progress-header">
-                            <span>Anotasi & Labeling</span>
-                            <span class="highlight">Rp 25.000.000</span>
-                        </div>
-                    </div>
-                    <div style="border-top: 1px solid rgba(255,255,255,0.1); padding-top: 1rem; margin-top: 1rem;">
-                        <strong>Subtotal: Rp 150.000.000</strong>
-                    </div>
-                </div>
-
-                <div class="card">
-                    <h3>👨‍💻 Development (6 bulan)</h3>
-                    <div class="progress-item">
-                        <div class="progress-header">
-                            <span>Gaji Developer</span>
-                            <span class="highlight">Rp 150.000.000</span>
-                        </div>
-                    </div>
-                    <div class="progress-item">
-                        <div class="progress-header">
-                            <span>AI Coding (Antigravity×5)</span>
-                            <span class="highlight">Rp 9.600.000</span>
-                        </div>
-                    </div>
-                    <div class="progress-item">
-                        <div class="progress-header">
-                            <span>AI API Topup</span>
-                            <span class="highlight">Rp 3.152.000</span>
-                        </div>
-                    </div>
-                    <div style="border-top: 1px solid rgba(255,255,255,0.1); padding-top: 1rem; margin-top: 1rem;">
-                        <strong>Subtotal: Rp 162.752.000</strong>
-                    </div>
-                </div>
-            </div>
-
-            <div class="stat-row" style="justify-content: center; margin-top: 2rem; flex-wrap: wrap;">
-                <div class="stat">
-                    <div class="stat-value" style="font-size: 2rem;">Rp 175jt</div>
-                    <div class="stat-label">Minimum (tanpa HW & Data)</div>
-                </div>
-                <div class="stat">
-                    <div class="stat-value" style="font-size: 2rem;">Rp 276jt</div>
-                    <div class="stat-label">Standard (+ Hardware)</div>
-                </div>
-                <div class="stat">
-                    <div class="stat-value">Rp 470jt</div>
-                    <div class="stat-label">Full (+ Training Data)</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Slide 5: Team Structure -->
+    <!-- Slide 5: Rincian Investasi -->
     <section class="slide" data-slide="5">
         <span class="slide-number">05</span>
         <div class="slide-content">
-            <h2>👥 Struktur Tim (AI-Powered)</h2>
-            <p class="subtitle">Lean team dengan AI coding tools untuk 10x produktivitas</p>
-
-            <div class="timeline">
-                <div class="timeline-item">
-                    <div class="timeline-phase">Fase 1</div>
-                    <div class="timeline-title">MVP (0-100 users)</div>
-                    <div class="timeline-details">
-                        <span class="timeline-stat">👤 <strong>1 orang</strong></span>
-                        <span class="timeline-stat">💰 <strong>Rp 25jt</strong>/bulan</span>
-                        <span class="timeline-stat">🤖 Antigravity ×5</span>
-                    </div>
-                </div>
-
-                <div class="timeline-item">
-                    <div class="timeline-phase">Fase 2</div>
-                    <div class="timeline-title">Growth (100-1.000 users)</div>
-                    <div class="timeline-details">
-                        <span class="timeline-stat">👥 <strong>3 orang</strong></span>
-                        <span class="timeline-stat">💰 <strong>Rp 55jt</strong>/bulan</span>
-                        <span class="timeline-stat">CEO + Dev + Marketing</span>
-                    </div>
-                </div>
-
-                <div class="timeline-item">
-                    <div class="timeline-phase">Fase 3</div>
-                    <div class="timeline-title">Scale (1.000-10.000 users)</div>
-                    <div class="timeline-details">
-                        <span class="timeline-stat">👥 <strong>5 orang</strong></span>
-                        <span class="timeline-stat">💰 <strong>Rp 100jt</strong>/bulan</span>
-                        <span class="timeline-stat">CEO + CTO + Dev + Marketing + CS</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Slide 6: OPEX -->
-    <section class="slide" data-slide="6">
-        <span class="slide-number">06</span>
-        <div class="slide-content">
-            <h2>📈 OPEX - Biaya Bulanan</h2>
-            <p class="subtitle">Total biaya operasional termasuk gaji tim</p>
+            <h2>💰 Rincian Investasi MVP</h2>
+            <p class="subtitle">Breakdown lengkap kebutuhan dana 6 bulan</p>
 
             <div class="table-wrapper">
                 <table>
                     <thead>
                         <tr>
-                            <th>Fase</th>
-                            <th>Users</th>
-                            <th>AI Cost</th>
-                            <th>AI Coding</th>
-                            <th>Gaji Tim</th>
-                            <th>Infra</th>
-                            <th>Total</th>
+                            <th>Kategori</th>
+                            <th>Item</th>
+                            <th>Total (6 bulan)</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td><strong>MVP</strong></td>
-                            <td>0-100</td>
-                            <td>Rp 3jt</td>
-                            <td>Rp 1.6jt</td>
-                            <td>Rp 25jt</td>
-                            <td>Rp 1jt</td>
-                            <td class="highlight" style="font-size: 1.1rem;"><strong>Rp 30.6jt</strong></td>
+                            <td>💻 <strong>Aset (Hardware)</strong></td>
+                            <td>MacBook Pro M3</td>
+                            <td class="highlight" style="font-size: 1.1rem;">Rp 35.000.000</td>
+                        </tr>
+                        <tr style="background: rgba(255,255,255,0.02);">
+                            <td rowspan="2">👥 <strong>Tim</strong></td>
+                            <td>Developer (6 bulan)</td>
+                            <td class="highlight">Rp 150.000.000</td>
+                        </tr>
+                        <tr style="background: rgba(255,255,255,0.02);">
+                            <td>Data Training (6 bulan)</td>
+                            <td class="highlight">Rp 150.000.000</td>
                         </tr>
                         <tr>
-                            <td><strong>Growth</strong></td>
-                            <td>100-1K</td>
-                            <td>Rp 15jt</td>
-                            <td>Rp 4.8jt</td>
-                            <td>Rp 55jt</td>
-                            <td>Rp 2jt</td>
-                            <td class="highlight" style="font-size: 1.1rem;"><strong>Rp 76.8jt</strong></td>
+                            <td rowspan="3">☁️ <strong>Cloud & Infrastruktur</strong></td>
+                            <td>Vercel Pro (Hosting)</td>
+                            <td class="highlight">Rp 1.920.000</td>
                         </tr>
                         <tr>
-                            <td><strong>Scale</strong></td>
-                            <td>1K-10K</td>
-                            <td>Rp 30jt</td>
-                            <td>Rp 8jt</td>
-                            <td>Rp 100jt</td>
-                            <td>Rp 3jt</td>
-                            <td class="highlight" style="font-size: 1.1rem;"><strong>Rp 141jt</strong></td>
+                            <td>Neon Database</td>
+                            <td class="highlight">Rp 2.400.000</td>
+                        </tr>
+                        <tr>
+                            <td>Storage & Domain</td>
+                            <td class="highlight">Rp 1.680.000</td>
+                        </tr>
+                        <tr style="background: rgba(255,255,255,0.02);">
+                            <td rowspan="2">🤖 <strong>AI Services</strong></td>
+                            <td>ModelsLab (Image + Video)</td>
+                            <td class="highlight">Rp 18.000.000</td>
+                        </tr>
+                        <tr style="background: rgba(255,255,255,0.02);">
+                            <td>DeepSeek (LLM)</td>
+                            <td class="highlight">Rp 600.000</td>
+                        </tr>
+                        <tr>
+                            <td>🛠️ <strong>Tools</strong></td>
+                            <td>AI Coding (Antigravity Pro ×5)</td>
+                            <td class="highlight">Rp 9.600.000</td>
+                        </tr>
+                        <tr>
+                            <td>📚 <strong>Training Data</strong></td>
+                            <td>Dataset Film, Naskah, Visual</td>
+                            <td class="highlight">Rp 15.000.000</td>
                         </tr>
                     </tbody>
                 </table>
             </div>
-
-            <div class="card"
-                style="margin-top: 2rem; background: linear-gradient(135deg, rgba(249, 115, 22, 0.1), rgba(239, 68, 68, 0.1)); border-color: var(--secondary);">
-                <h3 style="color: var(--secondary);">⚠️ Key Risk: Video Generation</h3>
-                <p style="color: var(--gray);">Video adalah cost driver terbesar (Rp 5.280/6s vs Rp 640/image). Gunakan
-                    strategi limit video per user untuk kontrol biaya.</p>
-            </div>
         </div>
     </section>
 
-    <!-- Slide 7: Summary -->
-    <section class="slide" data-slide="7">
-        <span class="slide-number">07</span>
+    <!-- Slide 6: Total Investasi -->
+    <section class="slide" data-slide="6">
+        <span class="slide-number">06</span>
         <div class="slide-content" style="text-align: center;">
-            <h2>🎯 Summary</h2>
-            <p class="subtitle" style="margin: 0 auto 3rem;">Ringkasan investasi MODO Platform</p>
+            <h2>🎯 Total Investasi MVP</h2>
+            <p class="subtitle" style="margin: 0 auto 2rem;">Semua yang dibutuhkan untuk 6 bulan pertama</p>
 
-            <div class="stat-row" style="justify-content: center;">
+            <div class="stat-row">
                 <div class="stat">
-                    <div class="stat-value">Rp 175-470jt</div>
-                    <div class="stat-label">Total CAPEX</div>
+                    <div class="stat-value" style="font-size: 2rem;">Rp 35jt</div>
+                    <div class="stat-label">💻 Aset Hardware</div>
                 </div>
                 <div class="stat">
-                    <div class="stat-value">Rp 30.6jt</div>
-                    <div class="stat-label">OPEX MVP/bulan</div>
+                    <div class="stat-value" style="font-size: 2rem;">Rp 300jt</div>
+                    <div class="stat-label">👥 Tim (2 orang × 6 bln)</div>
                 </div>
                 <div class="stat">
-                    <div class="stat-value">Rp 125k</div>
-                    <div class="stat-label">Avg Cost/IP</div>
-                </div>
-                <div class="stat">
-                    <div class="stat-value">~50</div>
-                    <div class="stat-label">Pro subs untuk BEP</div>
+                    <div class="stat-value" style="font-size: 2rem;">Rp 50jt</div>
+                    <div class="stat-label">☁️🤖 Cloud, AI, Tools, Data</div>
                 </div>
             </div>
 
-            <div class="card-grid" style="margin-top: 3rem;">
-                <div class="card" style="text-align: left;">
-                    <h3>🛠️ Tech Stack</h3>
-                    <p style="color: var(--gray); line-height: 1.8;">
-                        • Seedream 4.5 (Image)<br>
-                        • Seedance 4.0 (Video)<br>
-                        • DeepSeek V3 (LLM)<br>
-                        • Antigravity Pro (AI Coding)
-                    </p>
-                </div>
-                <div class="card" style="text-align: left;">
-                    <h3>👥 Team</h3>
-                    <p style="color: var(--gray); line-height: 1.8;">
-                        • MVP: 1 orang<br>
-                        • Growth: 3 orang<br>
-                        • Scale: 5 orang<br>
-                        • AI-powered 10x productivity
-                    </p>
-                </div>
-                <div class="card" style="text-align: left;">
-                    <h3>📅 Timeline</h3>
-                    <p style="color: var(--gray); line-height: 1.8;">
-                        • Development: 6 bulan<br>
-                        • MVP Launch: Bulan 7<br>
-                        • Growth: Bulan 7-18<br>
-                        • Scale: Tahun 2+
-                    </p>
-                </div>
+            <div class="total-box" style="max-width: 600px; margin: 3rem auto;">
+                <p style="color: var(--gray); font-size: 1.1rem; margin-bottom: 1rem;">TOTAL INVESTASI MVP (6 BULAN)</p>
+                <div style="font-size: 4.5rem; font-weight: 900; color: var(--accent);">Rp 385.000.000</div>
+                <p style="color: var(--gray); margin-top: 1rem; font-size: 1.1rem;">≈ Rp 385 juta • ≈ $24.000</p>
             </div>
 
-            <p style="margin-top: 3rem; color: var(--gray); font-size: 0.875rem;">
+            <div class="card" style="max-width: 600px; margin: 2rem auto; text-align: left;">
+                <h3>✅ Yang Didapat:</h3>
+                <ul style="color: var(--gray); line-height: 2; margin-top: 1rem; padding-left: 1.5rem;">
+                    <li>Platform IP Development Studio siap launch</li>
+                    <li>AI models terintegrasi (Image, Video, Text)</li>
+                    <li>Dataset training berkualitas</li>
+                    <li>Infrastruktur cloud untuk 100+ users</li>
+                    <li>Laptop development (aset permanen)</li>
+                </ul>
+            </div>
+
+            <p style="color: var(--gray); font-size: 0.9rem; margin-top: 2rem;">
                 Last Updated: Februari 2026 | Kurs: $1 = Rp 16.000
             </p>
         </div>
     </section>
 
     <footer class="footer">
-        <p>MODO Investment Infographic • Built with 💜 using GSAP</p>
+        <p>IP Development Studio Investment Pitch • Built with 💜</p>
     </footer>
 
     <script>
-        // Register GSAP plugins
         gsap.registerPlugin(ScrollTrigger);
-
-        // Create nav dots
         const slides = document.querySelectorAll('.slide');
         const navDots = document.getElementById('navDots');
 
         slides.forEach((slide, i) => {
             const dot = document.createElement('div');
             dot.className = 'nav-dot';
-            dot.addEventListener('click', () => {
-                slide.scrollIntoView({ behavior: 'smooth' });
-            });
+            dot.addEventListener('click', () => slide.scrollIntoView({ behavior: 'smooth' }));
             navDots.appendChild(dot);
         });
 
         const dots = document.querySelectorAll('.nav-dot');
 
-        // Update active dot on scroll
         slides.forEach((slide, i) => {
             ScrollTrigger.create({
                 trigger: slide,
@@ -928,24 +639,17 @@
         });
 
         function updateDots(index) {
-            dots.forEach((dot, i) => {
-                dot.classList.toggle('active', i === index);
-            });
+            dots.forEach((dot, i) => dot.classList.toggle('active', i === index));
         }
 
-        // Animate slide content on scroll
         slides.forEach((slide) => {
             const content = slide.querySelector('.slide-content');
             const cards = slide.querySelectorAll('.card');
-            const timelineItems = slide.querySelectorAll('.timeline-item');
-            const progressFills = slide.querySelectorAll('.progress-fill');
 
-            // Main content fade in
             gsap.fromTo(content,
                 { opacity: 0, y: 50 },
                 {
-                    opacity: 1,
-                    y: 0,
+                    opacity: 1, y: 0,
                     duration: 0.8,
                     ease: 'power2.out',
                     scrollTrigger: {
@@ -956,13 +660,11 @@
                 }
             );
 
-            // Stagger cards
             if (cards.length) {
                 gsap.fromTo(cards,
                     { opacity: 0, y: 30 },
                     {
-                        opacity: 1,
-                        y: 0,
+                        opacity: 1, y: 0,
                         duration: 0.6,
                         stagger: 0.15,
                         ease: 'power2.out',
@@ -974,54 +676,8 @@
                     }
                 );
             }
-
-            // Timeline items
-            if (timelineItems.length) {
-                gsap.to(timelineItems, {
-                    opacity: 1,
-                    x: 0,
-                    duration: 0.6,
-                    stagger: 0.2,
-                    ease: 'power2.out',
-                    scrollTrigger: {
-                        trigger: slide,
-                        start: 'top 60%',
-                        toggleActions: 'play none none reverse'
-                    }
-                });
-            }
-
-            // Progress bars
-            if (progressFills.length) {
-                gsap.to(progressFills, {
-                    scaleX: 1,
-                    duration: 1,
-                    stagger: 0.1,
-                    ease: 'power2.out',
-                    scrollTrigger: {
-                        trigger: slide,
-                        start: 'top 60%',
-                        toggleActions: 'play none none reverse'
-                    }
-                });
-            }
         });
 
-        // Parallax for floating elements
-        gsap.utils.toArray('.float-element').forEach((el) => {
-            gsap.to(el, {
-                y: -100,
-                ease: 'none',
-                scrollTrigger: {
-                    trigger: el.parentElement,
-                    start: 'top bottom',
-                    end: 'bottom top',
-                    scrub: 1
-                }
-            });
-        });
-
-        // Initialize first dot as active
         updateDots(0);
     </script>
 </body>
